@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "691658847178",
+    "project_id": "benefit-on",
+    "storage_bucket": "benefit-on.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:691658847178:android:dbd4ce175ad4d49cec5533",
+        "android_client_info": {
+          "package_name": "com.example.myapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbLgl139IUPDEXbdxySL29zR8wr1IFIcg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
