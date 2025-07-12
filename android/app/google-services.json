@@ -12,7 +12,20 @@
           "package_name": "com.example.myapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "691658847178-kjm2ssf9fh8qvp4utu182ad1sditbfm0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapp",
+            "certificate_hash": "0a611e6b4648631299986cfba79cacc95de71de4"
+          }
+        },
+        {
+          "client_id": "691658847178-pjd42rgmoopb3e59tm7t0gctac48k1fc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBbLgl139IUPDEXbdxySL29zR8wr1IFIcg"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "691658847178-pjd42rgmoopb3e59tm7t0gctac48k1fc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "691658847178-f3t0p2m9j107a41d4ivetd4lfq4091j3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.benefit.app"
+              }
+            }
+          ]
         }
       }
     }
