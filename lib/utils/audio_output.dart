@@ -1,19 +1,7 @@
 // Copyright 2025 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+// ... (라이선스 헤더)
 
 import 'dart:typed_data';
-
 import 'package:flutter_soloud/flutter_soloud.dart';
 
 class AudioOutput {
@@ -21,30 +9,29 @@ class AudioOutput {
   SoundHandle? handle;
 
   Future<void> init() async {
-    // Initialize the player.
+    if (SoLoud.instance.isInitialized) return;
     await SoLoud.instance.init(sampleRate: 24000, channels: Channels.mono);
     await setupNewStream();
   }
 
   Future<void> setupNewStream() async {
     if (SoLoud.instance.isInitialized) {
-      // Stop and clear any previous playback handle if it's still valid
-      await stopStream(); // Ensure previous sound is stopped
-
+      await stopStream();
       stream = SoLoud.instance.setBufferStream(
-        maxBufferSizeBytes:
-            1024 * 1024 * 10, // 10MB of max buffer (not allocated)
+        maxBufferSizeBytes: 1024 * 1024 * 10,
         bufferingType: BufferingType.released,
         bufferingTimeNeeds: 0,
         onBuffering: (isBuffering, handle, time) {},
       );
-      // Reset handle to null until the stream is played again
       handle = null;
     }
   }
 
   Future<AudioSource?> playStream() async {
-    handle = await SoLoud.instance.play(stream!);
+    if (stream == null) await setupNewStream();
+    if (handle == null) {
+      handle = await SoLoud.instance.play(stream!);
+    }
     return stream;
   }
 
@@ -54,13 +41,21 @@ class AudioOutput {
         SoLoud.instance.getIsValidVoiceHandle(handle!)) {
       SoLoud.instance.setDataIsEnded(stream!);
       await SoLoud.instance.stop(handle!);
-
-      // Clear old stream, set up new session for next time.
       await setupNewStream();
     }
   }
 
   void addAudioStream(Uint8List audioChunk) {
-    SoLoud.instance.addAudioDataStream(stream!, audioChunk);
+    if (stream != null) {
+      SoLoud.instance.addAudioDataStream(stream!, audioChunk);
+    }
+  }
+
+  // 리소스 정리를 위한 dispose 메서드
+  Future<void> dispose() async {
+    await stopStream();
+    if (SoLoud.instance.isInitialized) {
+      SoLoud.instance.deinit(); // 'await'를 제거하여 수정
+    }
   }
 }

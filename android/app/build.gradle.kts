@@ -26,7 +26,7 @@ android {
         applicationId = "com.example.myapp"
         
         // 이 부분을 아래와 같이 수정하세요.
-        minSdk = 23 
+        minSdk = 24
         
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
