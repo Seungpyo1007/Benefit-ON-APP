@@ -22,6 +22,7 @@ import 'package:flutter/material.dart';
 
 import 'pages/bidi_page.dart';   // 나중을 위해 남겨둠
 import 'Page/LoginPage.dart';
+import 'Page/WebMainPage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -44,9 +45,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           brightness: Brightness.dark,
-          seedColor: const Color.fromARGB(255, 171, 222, 244),
+          seedColor: const Color(0xFF23A6D5),
         ),
         useMaterial3: true,
+        scaffoldBackgroundColor: const Color(0xFF1F2029),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+        ),
       ),
       // 앱 시작점은 LoginPage 입니다.
       home: const LoginPage(),
